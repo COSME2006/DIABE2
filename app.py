@@ -178,3 +178,30 @@ if st.button("🔍 Calcular análisis"):
     """
 
     st.write(informe)
+# =============================
+# GRÁFICA DETALLADA DE FACTORES
+# =============================
+st.subheader("📈 Desglose detallado de factores")
+
+# Unir todos los factores
+todos_factores = {**bio, **vida}
+
+nombres = list(todos_factores.keys())
+valores = list(todos_factores.values())
+
+fig2, ax2 = plt.subplots()
+
+ax2.barh(nombres, valores)
+
+ax2.set_xlim(0, 1)
+ax2.set_xlabel("Nivel de riesgo (0 - 1)")
+ax2.set_title("Contribución individual de cada factor")
+
+# Mostrar valores
+for i, v in enumerate(valores):
+    ax2.text(v + 0.02, i, f"{v:.2f}", va='center')
+
+ax2.spines['top'].set_visible(False)
+ax2.spines['right'].set_visible(False)
+
+st.pyplot(fig2)
