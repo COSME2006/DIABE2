@@ -3,6 +3,30 @@ import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="Evaluación de Riesgo", layout="centered")
 
+# =============================
+# ESTILO
+# =============================
+st.markdown("""
+<style>
+.main {
+    background-color: #f5f7fa;
+}
+h1, h2, h3 {
+    color: #1f4e79;
+}
+.stButton>button {
+    background-color: #1f77b4;
+    color: white;
+    border-radius: 10px;
+    height: 3em;
+    width: 100%;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# =============================
+# TÍTULO
+# =============================
 st.title("🧠 Evaluación de Factores de Riesgo")
 st.subheader("Modelo educativo - Diabetes Mellitus")
 
@@ -20,7 +44,7 @@ col1, col2 = st.columns(2)
 with col1:
     edad = st.slider("Edad (>50 años)", 0.0, 1.0, 0.0)
     genetica = st.slider("Predisposición genética", 0.0, 1.0, 0.0)
-    antecedentes = st.slider("Antecedentes personales (prediabetes, etc.)", 0.0, 1.0, 0.0)
+    antecedentes = st.slider("Antecedentes personales", 0.0, 1.0, 0.0)
 
 with col2:
     sexo = st.slider("Sexo biológico (riesgo relativo)", 0.0, 1.0, 0.0)
@@ -105,6 +129,9 @@ if st.button("🔍 Calcular análisis"):
     for i, v in enumerate(valores):
         ax.text(v + 1, i, f"{v:.1f}%", va='center')
 
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+
     st.pyplot(fig)
 
     # =============================
@@ -121,11 +148,16 @@ if st.button("🔍 Calcular análisis"):
     for i, v in enumerate(todos.values()):
         ax2.text(v + 0.02, i, f"{v:.2f}", va='center')
 
+    ax2.spines['top'].set_visible(False)
+    ax2.spines['right'].set_visible(False)
+
     st.pyplot(fig2)
 
     # =============================
     # INTERPRETACIÓN
     # =============================
+    st.subheader("Interpretación")
+
     if pct_vida > 60:
         nivel = "Alto"
         st.error("🔴 Riesgo alto")
@@ -135,6 +167,8 @@ if st.button("🔍 Calcular análisis"):
     else:
         nivel = "Bajo"
         st.success("🟢 Riesgo bajo")
+
+    st.info("Este modelo es educativo y no sustituye diagnóstico clínico.")
 
     # =============================
     # INFORME
@@ -154,12 +188,13 @@ if st.button("🔍 Calcular análisis"):
     """
 
     st.write(informe)
+
     # =============================
     # ÁRBOL COMPARATIVO
     # =============================
-st.subheader("🌳 Árbol comparativo de determinantes")
+    st.subheader("🌳 Árbol comparativo de determinantes")
 
-st.markdown(f"""
+    st.markdown(f"""
 ### 🔎 Estructura del riesgo
 
 **RIESGO TOTAL (100%)**
