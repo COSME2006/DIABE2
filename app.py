@@ -154,3 +154,32 @@ if st.button("🔍 Calcular análisis"):
     """
 
     st.write(informe)
+# =============================
+# ÁRBOL COMPARATIVO
+# =============================
+st.subheader("🌳 Árbol comparativo de determinantes")
+
+st.markdown(f"""
+### 🔎 Estructura del riesgo
+
+**RIESGO TOTAL (100%)**
+
+├── 🧬 **Factores Biológicos ({pct_bio:.1f}%)**
+│   ├── Genética: {genetica:.2f}
+│   ├── Edad: {edad:.2f}
+│   ├── Antecedentes: {antecedentes:.2f}
+│   ├── Sexo: {sexo:.2f}
+│   └── Función Base: {base:.2f}
+
+└── 🏃 **Estilo de Vida ({pct_vida:.1f}%)**
+    ├── Dieta: {dieta:.2f}
+    ├── Actividad Física: {actividad:.2f}
+    ├── Adherencia: {adherencia:.2f}
+    ├── Estrés: {estres:.2f}
+    ├── IMC: {imc:.2f}
+    ├── Alcohol: {alcohol:.2f}
+    ├── Tabaco: {tabaco:.2f}
+    ├── Presión Arterial: {presion:.2f}
+    ├── Sueño: {sueno:.2f}
+    └── Azúcar: {azucar:.2f}
+""")
