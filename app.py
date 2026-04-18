@@ -117,18 +117,33 @@ if st.button("🔍 Calcular análisis"):
     col_res1.metric("🧬 Biológicos", f"{pct_bio:.1f}%")
     col_res2.metric("🏃 Estilo de vida", f"{pct_vida:.1f}%")
 
-    # =============================
-    # GRÁFICA DE PASTEL
-    # =============================
-    fig, ax = plt.subplots()
-    ax.pie(
-        [pct_bio, pct_vida],
-        labels=["Biológicos", "Estilo de Vida"],
-        autopct='%1.1f%%'
-    )
-    ax.set_title("Distribución del riesgo")
+  # =============================
+# GRÁFICA PROFESIONAL (BARRAS)
+# =============================
 
-    st.pyplot(fig)
+st.subheader("📊 Distribución del riesgo")
+
+fig, ax = plt.subplots()
+
+categorias = ["Biológicos", "Estilo de Vida"]
+valores = [pct_bio, pct_vida]
+
+bars = ax.barh(categorias, valores)
+
+# Estética limpia
+ax.set_xlim(0, 100)
+ax.set_xlabel("Porcentaje (%)")
+ax.set_title("Comparación de factores de riesgo")
+
+# Mostrar valores en la barra
+for i, v in enumerate(valores):
+    ax.text(v + 1, i, f"{v:.1f}%", va='center')
+
+# Quitar bordes innecesarios
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+
+st.pyplot(fig)
 
     # =============================
     # NIVEL DE RIESGO
