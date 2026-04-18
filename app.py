@@ -154,9 +154,9 @@ if st.button("🔍 Calcular análisis"):
     """
 
     st.write(informe)
-# =============================
-# ÁRBOL COMPARATIVO
-# =============================
+    # =============================
+    # ÁRBOL COMPARATIVO
+    # =============================
 st.subheader("🌳 Árbol comparativo de determinantes")
 
 st.markdown(f"""
