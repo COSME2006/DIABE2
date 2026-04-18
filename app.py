@@ -111,7 +111,7 @@ if st.button("🔍 Calcular análisis"):
     col_res2.metric("🏃 Estilo de vida", f"{pct_vida:.1f}%")
 
     # =============================
-    # GRÁFICA PROFESIONAL
+    # GRÁFICA
     # =============================
     st.subheader("📊 Distribución del riesgo")
 
@@ -121,7 +121,6 @@ if st.button("🔍 Calcular análisis"):
     valores = [pct_bio, pct_vida]
 
     ax.barh(categorias, valores)
-
     ax.set_xlim(0, 100)
     ax.set_xlabel("Porcentaje (%)")
     ax.set_title("Comparación de factores de riesgo")
@@ -140,10 +139,42 @@ if st.button("🔍 Calcular análisis"):
     st.subheader("Interpretación")
 
     if pct_vida > 60:
+        nivel = "Alto"
         st.error("🔴 Riesgo alto por estilo de vida")
     elif pct_vida > 40:
+        nivel = "Moderado"
         st.warning("🟠 Riesgo moderado")
     else:
+        nivel = "Bajo"
         st.success("🟢 Riesgo bajo")
 
     st.info("Este modelo es educativo y no sustituye diagnóstico clínico.")
+
+    # =============================
+    # INFORME DE ENFERMERÍA
+    # =============================
+    st.subheader("📝 Informe automático de enfermería")
+
+    informe = f"""
+    **Evaluación de Riesgo para Diabetes Mellitus**
+
+    Paciente: {nombre if nombre else "No especificado"}
+
+    Se realizó una valoración de factores de riesgo, clasificándolos en biológicos y de estilo de vida.
+
+    Los resultados evidencian un **{pct_bio:.1f}% de influencia de factores biológicos** y un **{pct_vida:.1f}% de factores relacionados con el estilo de vida**.
+
+    Se identifica un nivel de riesgo **{nivel}**, con predominio de factores {'modificables' if pct_vida > pct_bio else 'no modificables'}.
+
+    Desde el enfoque de enfermería, se recomienda:
+
+    - Fomentar hábitos alimenticios saludables
+    - Promover actividad física regular
+    - Mejorar adherencia al tratamiento
+    - Implementar estrategias de manejo del estrés
+    - Realizar controles médicos periódicos
+
+    Este análisis tiene carácter educativo y preventivo, orientado a la promoción de la salud y reducción de factores de riesgo.
+    """
+
+    st.write(informe)
