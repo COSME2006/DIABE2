@@ -1,8 +1,4 @@
-diff --git a/app.py b/app.py
-index f3973d8cb12b8aecc19046accfd37edfa03b9546..b5194bf78c331e15bdc1afcfb2b94fd786fcb8f8 100644
---- a/app.py
-+++ b/app.py
-@@ -1,29 +1,61 @@
+
  import streamlit as st
  
  st.set_page_config(page_title="Evaluación de Riesgo - Diabetes", layout="centered")
