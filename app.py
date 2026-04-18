@@ -35,7 +35,7 @@ st.info("Valores entre 0 (sin riesgo) y 1 (riesgo máximo)")
 nombre = st.text_input("Nombre del paciente (opcional)")
 
 # =============================
-# FACTORES BIOLÓGICOS (5)
+# FACTORES BIOLÓGICOS
 # =============================
 st.header("🧬 Factores Biológicos")
 
@@ -52,7 +52,7 @@ with col2:
     st.write("Función metabólica base: constante")
 
 # =============================
-# ESTILO DE VIDA (10)
+# ESTILO DE VIDA
 # =============================
 st.header("🏃 Estilo de Vida")
 
@@ -135,7 +135,7 @@ if st.button("🔍 Calcular análisis"):
     st.pyplot(fig)
 
     # =============================
-    # GRÁFICA DETALLADA (15)
+    # GRÁFICA DETALLADA
     # =============================
     st.subheader("📈 Desglose completo de factores")
 
@@ -188,49 +188,7 @@ if st.button("🔍 Calcular análisis"):
     """
 
     st.write(informe)
-    # =============================
-# DIAGNÓSTICOS NANDA AUTOMÁTICOS
-# =============================
-st.subheader("🧠 Diagnósticos de Enfermería (NANDA)")
 
-diagnosticos = []
-
-# Evaluación de factores
-if dieta >= 0.6 or azucar >= 0.6 or imc >= 0.6:
-    diagnosticos.append("Nutrición desequilibrada: más que las necesidades corporales")
-
-if actividad >= 0.6:
-    diagnosticos.append("Sedentarismo")
-
-if adherencia >= 0.6:
-    diagnosticos.append("Manejo ineficaz del régimen terapéutico")
-
-if estres >= 0.6:
-    diagnosticos.append("Afrontamiento ineficaz")
-
-if sueno >= 0.6:
-    diagnosticos.append("Trastorno del patrón del sueño")
-
-if tabaco >= 0.6:
-    diagnosticos.append("Conducta de salud de riesgo (tabaquismo)")
-
-if alcohol >= 0.6:
-    diagnosticos.append("Conducta de salud de riesgo (consumo de alcohol)")
-
-if presion >= 0.6:
-    diagnosticos.append("Riesgo de perfusión tisular ineficaz")
-
-# Diagnóstico global
-if pct_vida > 50:
-    diagnosticos.append("Riesgo de glucemia inestable")
-
-# Mostrar resultados
-if diagnosticos:
-    for d in diagnosticos:
-        st.write(f"• {d}")
-else:
-    st.success("No se identifican diagnósticos de riesgo relevantes.")
-    
     # =============================
     # ÁRBOL COMPARATIVO
     # =============================
@@ -260,3 +218,43 @@ else:
     ├── Sueño: {sueno:.2f}
     └── Azúcar: {azucar:.2f}
 """)
+
+    # =============================
+    # NANDA AUTOMÁTICO
+    # =============================
+    st.subheader("🧠 Diagnósticos de Enfermería (NANDA)")
+
+    diagnosticos = []
+
+    if dieta >= 0.6 or azucar >= 0.6 or imc >= 0.6:
+        diagnosticos.append("Nutrición desequilibrada: más que las necesidades corporales")
+
+    if actividad >= 0.6:
+        diagnosticos.append("Sedentarismo")
+
+    if adherencia >= 0.6:
+        diagnosticos.append("Manejo ineficaz del régimen terapéutico")
+
+    if estres >= 0.6:
+        diagnosticos.append("Afrontamiento ineficaz")
+
+    if sueno >= 0.6:
+        diagnosticos.append("Trastorno del patrón del sueño")
+
+    if tabaco >= 0.6:
+        diagnosticos.append("Conducta de salud de riesgo (tabaquismo)")
+
+    if alcohol >= 0.6:
+        diagnosticos.append("Conducta de salud de riesgo (consumo de alcohol)")
+
+    if presion >= 0.6:
+        diagnosticos.append("Riesgo de perfusión tisular ineficaz")
+
+    if pct_vida > 50:
+        diagnosticos.append("Riesgo de glucemia inestable")
+
+    if diagnosticos:
+        for d in diagnosticos:
+            st.write(f"• {d}")
+    else:
+        st.success("No se identifican diagnósticos relevantes.")
